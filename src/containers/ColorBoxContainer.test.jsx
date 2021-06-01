@@ -14,5 +14,12 @@ describe('ColorBoxContainer', () => {
 
     const input = screen.getByLabelText('colors');
     fireEvent.input(input, { target: { value: '#FF0000' } });
+
+    //Change to Blue Box
+    fireEvent.input(input, { target: { value: '#0000FF' } });
+
+    //Change to Green Box
+    fireEvent.input(input, { target: { value: '#00FF00' } });
+    expect(color.style.backgroundColor).toEqual('rgb(0, 255, 0)');
   });
 });
