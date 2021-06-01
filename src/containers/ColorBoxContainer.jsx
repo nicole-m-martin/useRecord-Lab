@@ -6,21 +6,28 @@ const ColorBoxContainer = () => {
 
   return (
     <>
-      <button onClick={undo} disabled={index === 0}>
+      <button aria-label="undo" onClick={undo} disabled={index === 0}>
         UNDO
       </button>
 
-      <button onClick={redo} disabled={index === current.length - 1}>
+      <button
+        aria-label="redo"
+        onClick={redo}
+        disabled={index === current.length - 1}
+      >
         REDO
       </button>
 
       <input
+        aria-label="colors"
         type="color"
+        id="colors"
         value={current[index]}
         onChange={({ target }) => record(target.value)}
       />
 
       <div
+        data-testid="color-box"
         style={{
           backgroundColor: current[index],
           width: '10rem',
