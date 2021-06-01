@@ -1,15 +1,34 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useRecord } from '../components/hooks/useRecord';
 
-<>
-  <button onClick={undo}>undo</button>
-  <button onClick={redo}>redo</button>
-  <input
-    type="color"
-    value={current}
-    onChange={({ target }) => record(target.value)}
-  />
-  <div
-    style={{ backgroundColor: current, width: '10rem', height: '10rem' }}
-  ></div>
-</>;
+const ColorBoxContainer = () => {
+  const { current, undo, redo, record, index } = useRecord('#FF0000');
+
+  return (
+    <>
+      <button onClick={undo} disabled={index === 0}>
+        UNDO
+      </button>
+
+      <button onClick={redo} disabled={index === current.length - 1}>
+        REDO
+      </button>
+
+      <input
+        type="color"
+        value={current[index]}
+        onChange={({ target }) => record(target.value)}
+      />
+
+      <div
+        style={{
+          backgroundColor: current[index],
+          width: '10rem',
+          height: '10rem',
+        }}
+      ></div>
+    </>
+  );
+};
+
+export default ColorBoxContainer;
