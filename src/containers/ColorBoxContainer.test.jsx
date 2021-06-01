@@ -21,5 +21,15 @@ describe('ColorBoxContainer', () => {
     //Change to Green Box
     fireEvent.input(input, { target: { value: '#00FF00' } });
     expect(color.style.backgroundColor).toEqual('rgb(0, 255, 0)');
+
+    // Undo color change back to blue
+    const undo = screen.getByRole('button', { name: 'undo' });
+    fireEvent.click(undo);
+    expect(color.style.backgroundColor).toEqual('rgb(0, 0, 255)');
+
+    // Redo color change back to green
+    const redo = screen.getByRole('button', { name: 'redo' });
+    fireEvent.click(redo);
+    expect(color.style.backgroundColor).toEqual('rgb(0, 255, 0)');
   });
 });
